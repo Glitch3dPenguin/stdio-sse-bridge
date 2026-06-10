@@ -18,3 +18,19 @@ The bridge spawns the MCP server of your choice as a child process and pipes inp
 | `PORT` | `3001` | The port the SSE bridge will listen on. |
 
 ## Deployment (Docker Compose)
+```yaml
+services: null
+mcp-server: null
+image: 'ghcr.io/glitch3d/mcp-sse-bridge:latest'
+environment:
+  - PORT=3001
+  - MCP_COMMAND=npx -y @modelcontextprotocol/server-github
+  - GITHUB_PERSONAL_ACCESS_TOKEN=your_token_here
+ports:
+  - '3001:3001'
+```
+
+## Connectivity
+Once running, the bridge exposes two main endpoints:
+- `GET /sse`: Establish the SSE connection.
+- `POST /messages`: Send messages to the MCP server.
